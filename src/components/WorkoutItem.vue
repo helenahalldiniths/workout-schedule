@@ -1,29 +1,45 @@
 <template>
   <div class="workout">
-    <p id="activity">{{ workout.activity }}</p>
-    <p id="duration">Duration: {{ workout.duration }} min</p>
-    <p id="week">Week: {{ workout.week }}</p>
+    <div class="workout-info">
+      <p id="activity">{{ workout.activity }}</p>
+      <p id="duration">Duration: {{ workout.duration }} min</p>
+      <p id="week">Week: {{ workout.week }}</p>
+    </div>
+    <div class="button-div">
+      <AppButton text="Completed" color="green" />
+    </div>
   </div>
 </template>
 
 <script>
+import AppButton from "./AppButton.vue";
 export default {
   name: "WorkoutItem",
   props: {
     workout: Object,
+  },
+  components: {
+    AppButton,
   },
 };
 </script>
 
 <style scoped>
 .workout {
-  margin: 10px;
-  padding: 10px;
+  display: flex;
+  justify-content: space-between;
   background-color: lightgray;
+  margin-bottom: 10px;
+  align-items: center;
+  padding: 8px;
 }
 
-.workout p {
+.workout-info p {
   margin: 5px;
+}
+
+.button-div {
+  margin-right: 10px;
 }
 
 #activity {
@@ -39,5 +55,9 @@ export default {
 #week {
   font-size: 15px;
   font-weight: bold;
+}
+
+.completed {
+  opacity: 0.3;
 }
 </style>
