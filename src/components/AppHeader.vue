@@ -19,5 +19,6 @@ h1 {
   margin-bottom: 0px;
   background-color: grey;
   color: white;
+  text-align: center;
 }
 </style>
