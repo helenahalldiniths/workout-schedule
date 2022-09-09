@@ -1,6 +1,10 @@
 <template>
   <div v-for="(workout, index) in workouts" :key="index">
-    <WorkoutItem :workout="workout" />
+    <WorkoutItem
+      @complete-workout="$emit('complete-workout', workout.id)"
+      @delete-workout="$emit('delete-workout', workout.id)"
+      :workout="workout"
+    />
   </div>
 </template>
 
@@ -14,5 +18,6 @@ export default {
   props: {
     workouts: Array,
   },
+  emits: ["complete-workout", "delete-workout"],
 };
 </script>

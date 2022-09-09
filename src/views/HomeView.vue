@@ -1,7 +1,11 @@
 <template>
   <section>
     <h1>This is an home page</h1>
-    <WorkoutItems :workouts="workouts" />
+    <WorkoutItems
+      @complete-workout="completeWorkout"
+      @delete-workout="deleteWorkout"
+      :workouts="workouts"
+    />
   </section>
 </template>
 
@@ -17,6 +21,18 @@ export default {
     return {
       workouts: [],
     };
+  },
+  methods: {
+    completeWorkout(id) {
+      this.workouts = this.workouts.map((workout) =>
+        workout.id === id
+          ? { ...workout, completed: !workout.completed }
+          : workout
+      );
+    },
+    deleteWorkout(id) {
+      this.workouts = this.workouts.filter((workout) => workout.id !== id);
+    },
   },
   created() {
     this.workouts = [

@@ -1,5 +1,7 @@
 <template>
-  <button :style="{ background: color }">{{ text }}</button>
+  <button @click="$emit('button-clicked')" :style="{ background: color }">
+    {{ text }}
+  </button>
 </template>
 
 <script>
