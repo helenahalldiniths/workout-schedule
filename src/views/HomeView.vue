@@ -1,6 +1,7 @@
 <template>
   <section>
-    <h1>This is an home page</h1>
+    <AddWorkout @add-workout="addWorkout" />
+    <h1>Workouts</h1>
     <WorkoutItems
       @complete-workout="completeWorkout"
       @delete-workout="deleteWorkout"
@@ -11,11 +12,13 @@
 
 <script>
 import WorkoutItems from "../components/WorkoutItems";
+import AddWorkout from "../components/AddWorkout";
 
 export default {
   name: "HomeView",
   components: {
     WorkoutItems,
+    AddWorkout,
   },
   data() {
     return {
@@ -23,6 +26,10 @@ export default {
     };
   },
   methods: {
+    addWorkout(workout) {
+      this.workouts = [...this.workouts, workout];
+      console.log("from home", workout);
+    },
     completeWorkout(id) {
       this.workouts = this.workouts.map((workout) =>
         workout.id === id
@@ -41,7 +48,7 @@ export default {
         activity: "Jog",
         duration: 20,
         week: 1,
-        completed: true,
+        completed: false,
       },
       {
         id: 2,
