@@ -90,6 +90,8 @@ h1 {
 @media screen and (min-width: 800px) {
   main {
     flex-direction: row;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
   .add-workout-section {
