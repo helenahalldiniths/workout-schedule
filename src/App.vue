@@ -19,7 +19,7 @@ export default {
 <style>
 #app {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  color: #2c3e50;
+  color: black;
 }
 
 .btn,
@@ -47,5 +47,9 @@ export default {
 
 .btn:active {
   transform: scale(0.98);
+}
+
+body {
+  margin: 0px;
 }
 </style>

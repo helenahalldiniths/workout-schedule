@@ -75,11 +75,8 @@ export default {
 </script>
 
 <style scoped>
-section {
-  background-color: lightgray;
-}
 .form {
-  padding: 0px 20px 20px 20px;
+  padding: 0px 20px 0px 10px;
 }
 .form-control {
   margin-bottom: 20px;

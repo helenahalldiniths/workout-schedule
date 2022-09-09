@@ -1,13 +1,17 @@
 <template>
-  <section>
-    <AddWorkout @add-workout="addWorkout" />
-    <h1>Workouts</h1>
-    <WorkoutItems
-      @complete-workout="completeWorkout"
-      @delete-workout="deleteWorkout"
-      :workouts="workouts"
-    />
-  </section>
+  <main>
+    <section class="add-workout-section">
+      <AddWorkout @add-workout="addWorkout" />
+    </section>
+    <section class="show-workouts-section">
+      <h1>Workouts:</h1>
+      <WorkoutItems
+        @complete-workout="completeWorkout"
+        @delete-workout="deleteWorkout"
+        :workouts="workouts"
+      />
+    </section>
+  </main>
 </template>
 
 <script>
@@ -70,7 +74,30 @@ export default {
 </script>
 
 <style scoped>
+main {
+  display: flex;
+  flex-direction: column;
+}
+
 section {
-  padding: 10px;
+  padding: 5px;
+}
+
+h1 {
+  margin-left: 5px;
+}
+
+@media screen and (min-width: 800px) {
+  main {
+    flex-direction: row;
+  }
+
+  .add-workout-section {
+    flex-grow: 1;
+  }
+  .show-workouts-section {
+    flex-grow: 3;
+    margin-right: 20px;
+  }
 }
 </style>

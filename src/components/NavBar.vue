@@ -20,6 +20,8 @@ nav {
   flex-direction: row;
   justify-content: center;
   gap: 20px;
+  width: 100%;
+  font-size: 20px;
 }
 
 nav a {
