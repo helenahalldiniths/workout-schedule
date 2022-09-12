@@ -32,7 +32,6 @@
           required
         />
       </div>
-
       <div class="form-btn">
         <div></div>
         <input type="submit" value="Save Workout" class="big-btn" />
@@ -55,6 +54,14 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault();
+
+      if (this.duration <= 0) {
+        alert("Duration must be more than 0");
+        return;
+      } else if (this.week < 0) {
+        alert("The week must be at least 0");
+        return;
+      }
       const newWorkout = {
         id: this.id,
         activity: this.activity,
