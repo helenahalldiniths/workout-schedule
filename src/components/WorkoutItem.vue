@@ -50,6 +50,8 @@ export default {
   align-items: center;
   padding: 10px;
   min-height: 100px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .workout-info p {

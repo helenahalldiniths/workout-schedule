@@ -1,24 +1,5 @@
 <template>
-  <section class="workout-img-section">
-    <img
-      src="../../public/aerobics.png"
-      alt="aerobics"
-      id="aerobics-img"
-      class="workout-img"
-    />
-    <img
-      src="../../public/yoga.png"
-      alt="yoga"
-      id="yoga-img"
-      class="workout-img"
-    />
-    <img
-      src="../../public/crossfit.png"
-      alt="crossfit"
-      id="crossfit-img"
-      class="workout-img"
-    />
-  </section>
+  <HeroImage />
   <main>
     <section class="add-workout-section">
       <AddWorkout @add-workout="addWorkout" />
@@ -37,12 +18,14 @@
 <script>
 import WorkoutItems from "../components/WorkoutItems";
 import AddWorkout from "../components/AddWorkout";
+import HeroImage from "../components/HeroImage.vue";
 
 export default {
   name: "HomeView",
   components: {
     WorkoutItems,
     AddWorkout,
+    HeroImage,
   },
   data() {
     return {
@@ -105,24 +88,6 @@ section {
 
 h1 {
   margin-left: 5px;
-}
-
-.workout-img-section {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.workout-img {
-  width: 60px;
-}
-
-#yoga-img,
-#crossfit-img {
-  width: 150px;
 }
 
 @media screen and (min-width: 800px) {
