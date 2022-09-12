@@ -18,7 +18,7 @@ export default {
 h1 {
   margin-bottom: 0px;
   margin-top: 0px;
-  background-color: green;
+  background-color: rgb(59, 90, 110);
   color: white;
   text-align: center;
   font-size: 40px;

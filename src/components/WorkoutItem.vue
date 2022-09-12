@@ -9,19 +9,18 @@
       <AppButton
         @button-clicked="$emit('complete-workout', workout.id)"
         text="Completed"
-        color="green"
         v-show="!workout.completed"
       />
       <AppButton
-        @button-clicked="$emit('delete-workout', workout.id)"
-        text="Delete workout"
-        color="red"
+        @button-clicked="$emit('complete-workout', workout.id)"
+        text="Regret"
+        color="gray"
         v-show="workout.completed"
       />
       <AppButton
-        @button-clicked="$emit('complete-workout', workout.id)"
-        text="Regret completing"
-        color="gray"
+        @button-clicked="$emit('delete-workout', workout.id)"
+        text="Delete"
+        color="red"
         v-show="workout.completed"
       />
     </div>
@@ -45,10 +44,12 @@ export default {
 .workout {
   display: flex;
   justify-content: space-between;
-  background-color: lightgray;
+  background-color: rgb(232, 232, 232);
+  border-radius: 10px;
   margin-bottom: 10px;
   align-items: center;
   padding: 10px;
+  min-height: 100px;
 }
 
 .workout-info p {

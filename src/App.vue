@@ -18,14 +18,16 @@ export default {
 
 <style>
 #app {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  color: black;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: rgb(59, 90, 110);
 }
 
 .btn,
 .big-btn {
-  background: black;
   color: white;
+  background: rgb(59, 90, 110);
+
   border: none;
   padding: 10px 15px;
   margin: 5px;
@@ -38,7 +40,8 @@ export default {
 
 .big-btn {
   font-size: 20px;
-  background: green;
+  color: white;
+  background: rgb(59, 90, 110);
 }
 
 .btn:focus {
