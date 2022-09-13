@@ -1,6 +1,7 @@
 <template>
   <AppHeader title="Workout plan" />
   <NavBar />
+  <router-view />
 </template>
 
 <script>

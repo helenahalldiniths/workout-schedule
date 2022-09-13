@@ -31,7 +31,7 @@ export default {
 .workout-img-section {
   display: flex;
   justify-content: center;
-  gap: 50px;
+  gap: 10px;
   flex-direction: row;
   align-items: center;
   margin-top: 10px;
@@ -39,11 +39,41 @@ export default {
 }
 
 .workout-img {
-  width: 60px;
+  width: 35px;
 }
 
 #yoga-img,
 #crossfit-img {
-  width: 150px;
+  width: 95px;
+}
+
+@media screen and (min-width: 372px) {
+  .workout-img-section {
+    gap: 20px;
+  }
+
+  .workout-img {
+    width: 50px;
+  }
+
+  #yoga-img,
+  #crossfit-img {
+    width: 125px;
+  }
+}
+
+@media screen and (min-width: 821px) {
+  .workout-img-section {
+    gap: 50px;
+  }
+
+  .workout-img {
+    width: 60px;
+  }
+
+  #yoga-img,
+  #crossfit-img {
+    width: 150px;
+  }
 }
 </style>
