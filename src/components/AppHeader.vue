@@ -3,13 +3,18 @@
   <header>
     <h1>{{ title }}</h1>
   </header>
+  <NavBar />
 </template>
 
 <script>
+import NavBar from "./NavBar.vue";
 export default {
   name: "AppHeader",
   props: {
     title: String,
+  },
+  components: {
+    NavBar,
   },
 };
 </script>

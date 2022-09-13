@@ -1,18 +1,15 @@
 <template>
   <AppHeader title="Workout plan" />
-  <NavBar />
   <router-view />
 </template>
 
 <script>
 import AppHeader from "./components/AppHeader.vue";
-import NavBar from "./components/NavBar.vue";
 
 export default {
   name: "App",
   components: {
     AppHeader,
-    NavBar,
   },
 };
 </script>
