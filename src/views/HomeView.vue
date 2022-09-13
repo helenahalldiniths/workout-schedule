@@ -2,7 +2,21 @@
   <HeroImage />
   <main>
     <section class="add-workout-section">
-      <AddWorkout @add-workout="addWorkout" />
+      <div class="form-buttons">
+        <AppButton
+          text="Add Workout"
+          @button-clicked="toggleShowForm"
+          v-show="!showForm && showButton"
+          class="big-btn"
+        />
+        <AppButton
+          text="Hide form"
+          color="gray"
+          @button-clicked="toggleShowForm"
+          v-show="showForm && showButton"
+        />
+      </div>
+      <AddWorkout @add-workout="addWorkout" v-show="showForm" />
     </section>
     <section class="show-workouts-section">
       <h1>Workouts:</h1>
@@ -19,6 +33,7 @@
 import WorkoutItems from "../components/WorkoutItems";
 import AddWorkout from "../components/AddWorkout";
 import HeroImage from "../components/HeroImage.vue";
+import AppButton from "../components/AppButton.vue";
 
 export default {
   name: "HomeView",
@@ -26,13 +41,28 @@ export default {
     WorkoutItems,
     AddWorkout,
     HeroImage,
+    AppButton,
   },
   data() {
     return {
       workouts: [],
+      showForm: false,
+      showButton: false,
     };
   },
   methods: {
+    onResize() {
+      if (window.innerWidth < 821) {
+        this.showForm = false;
+        this.showButton = true;
+      } else {
+        this.showForm = true;
+        this.showButton = false;
+      }
+    },
+    toggleShowForm() {
+      this.showForm = !this.showForm;
+    },
     addWorkout(workout) {
       this.workouts = [...this.workouts, workout];
       console.log("from home", workout);
@@ -47,6 +77,10 @@ export default {
     deleteWorkout(id) {
       this.workouts = this.workouts.filter((workout) => workout.id !== id);
     },
+  },
+  mounted() {
+    window.addEventListener("resize", this.onResize);
+    this.onResize();
   },
   created() {
     this.workouts = [
@@ -88,6 +122,11 @@ section {
 
 h1 {
   margin-left: 5px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (min-width: 821px) {

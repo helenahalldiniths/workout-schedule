@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="add-workout-section">
     <h2>Add Workout:</h2>
     <form @submit="onSubmit" class="form">
       <div class="form-control">
@@ -51,6 +51,7 @@ export default {
       id: 4,
     };
   },
+
   methods: {
     onSubmit(event) {
       event.preventDefault();
