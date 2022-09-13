@@ -41,6 +41,7 @@ h2 {
 
 img {
   width: 100px;
+  height: fit-content;
   padding: 30px;
   margin-right: 60px;
 }

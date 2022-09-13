@@ -90,7 +90,7 @@ h1 {
   margin-left: 5px;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 821px) {
   main {
     flex-direction: row;
     margin-left: 10px;

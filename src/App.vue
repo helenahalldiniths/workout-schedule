@@ -1,20 +1,36 @@
 <template>
-  <AppHeader title="Workout plan" />
-  <router-view />
+  <body>
+    <AppHeader title="Workout plan" />
+    <router-view />
+    <AppFooter class="footer" />
+  </body>
 </template>
 
 <script>
 import AppHeader from "./components/AppHeader.vue";
+import AppFooter from "./components/AppFooter.vue";
 
 export default {
   name: "App",
   components: {
     AppHeader,
+    AppFooter,
   },
 };
 </script>
 
 <style>
+body {
+  margin: 0px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  margin-top: auto;
+}
+
 #app {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -48,9 +64,5 @@ export default {
 
 .btn:active {
   transform: scale(0.98);
-}
-
-body {
-  margin: 0px;
 }
 </style>
