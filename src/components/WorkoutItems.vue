@@ -1,23 +1,27 @@
 <template>
-  <div v-for="(workout, index) in workouts" :key="index">
+  <div v-for="(workout, index) in props.workouts" :key="index">
     <WorkoutItem
-      @complete-workout="$emit('complete-workout', workout.id)"
-      @delete-workout="$emit('delete-workout', workout.id)"
+      @complete-workout="CompleteWorkout(workout.id)"
+      @delete-workout="DeleteWorkout(workout.id)"
       :workout="workout"
     />
   </div>
 </template>
 
-<script>
+<script setup>
 import WorkoutItem from "./WorkoutItem.vue";
-export default {
-  name: "WorkoutItems",
-  components: {
-    WorkoutItem,
-  },
-  props: {
-    workouts: Array,
-  },
-  emits: ["complete-workout", "delete-workout"],
-};
+
+const props = defineProps({
+  workouts: Array,
+});
+
+const emits = defineEmits(["complete-workout", "delete-workout"]);
+
+function CompleteWorkout(id) {
+  emits("complete-workout", id);
+}
+
+function DeleteWorkout(id) {
+  emits("delete-workout", id);
+}
 </script>
