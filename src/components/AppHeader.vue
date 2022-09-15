@@ -1,22 +1,16 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <header>
-    <h1>{{ title }}</h1>
+    <h1>{{ props.title }}</h1>
   </header>
   <NavBar />
 </template>
 
-<script>
+<script setup>
 import NavBar from "./NavBar.vue";
-export default {
-  name: "AppHeader",
-  props: {
-    title: String,
-  },
-  components: {
-    NavBar,
-  },
-};
+const props = defineProps({
+  title: String,
+});
 </script>
 
 <style scoped>
