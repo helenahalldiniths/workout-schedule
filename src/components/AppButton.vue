@@ -2,18 +2,15 @@
   <button
     class="btn"
     @click="$emit('button-clicked')"
-    :style="{ background: color }"
+    :style="{ background: props.color }"
   >
-    {{ text }}
+    {{ props.text }}
   </button>
 </template>
 
-<script>
-export default {
-  name: "AppButton",
-  props: {
-    color: String,
-    text: String,
-  },
-};
+<script setup>
+const props = defineProps({
+  text: String,
+  color: String,
+});
 </script>
