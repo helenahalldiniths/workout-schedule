@@ -29,85 +29,82 @@
   </main>
 </template>
 
-<script>
+<script setup>
 import WorkoutItems from "../components/WorkoutItems";
 import AddWorkout from "../components/AddWorkout";
 import HeroImage from "../components/HeroImage.vue";
 import AppButton from "../components/AppButton.vue";
 
-export default {
-  name: "HomeView",
-  components: {
-    WorkoutItems,
-    AddWorkout,
-    HeroImage,
-    AppButton,
-  },
-  data() {
-    return {
-      workouts: [],
-      showForm: false,
-      showButton: false,
-    };
-  },
-  methods: {
-    onResize() {
-      if (window.innerWidth < 821) {
-        this.showForm = false;
-        this.showButton = true;
-      } else {
-        this.showForm = true;
-        this.showButton = false;
-      }
+import { ref, onMounted, onBeforeMount } from "vue";
+const workouts = ref([]);
+const showForm = ref(false);
+const showButton = ref(false);
+
+function onResize() {
+  if (window.innerWidth < 821) {
+    showForm.value = false;
+    showButton.value = true;
+  } else {
+    showForm.value = true;
+    showButton.value = false;
+  }
+}
+
+function toggleShowForm() {
+  showForm.value = !showForm.value;
+}
+
+function addWorkout(workout) {
+  workouts.value = [...workouts.value, workout];
+}
+
+function completeWorkout(id) {
+  workouts.value = workouts.value.map((workout) =>
+    workout.id === id ? { ...workout, completed: !workout.completed } : workout
+  );
+}
+
+function deleteWorkout(id) {
+  workouts.value = workouts.value.filter((workout) => workout.id !== id);
+}
+
+onMounted(() => {
+  window.addEventListener("resize", onResize);
+  onResize();
+});
+
+onBeforeMount(() => {
+  workouts.value = [
+    ...workouts.value,
+    {
+      id: 1,
+      activity: "Jog",
+      duration: 20,
+      week: 1,
+      completed: false,
     },
-    toggleShowForm() {
-      this.showForm = !this.showForm;
+  ];
+  workouts.value = [
+    ...workouts.value,
+    {
+      id: 2,
+      activity: "Tennis",
+      duration: 50,
+      week: 1,
+      completed: false,
     },
-    addWorkout(workout) {
-      this.workouts = [...this.workouts, workout];
-      console.log("from home", workout);
+  ];
+  workouts.value = [
+    ...workouts.value,
+    {
+      id: 3,
+      activity: "Power walk",
+      duration: 75,
+      week: 2,
+      completed: false,
     },
-    completeWorkout(id) {
-      this.workouts = this.workouts.map((workout) =>
-        workout.id === id
-          ? { ...workout, completed: !workout.completed }
-          : workout
-      );
-    },
-    deleteWorkout(id) {
-      this.workouts = this.workouts.filter((workout) => workout.id !== id);
-    },
-  },
-  mounted() {
-    window.addEventListener("resize", this.onResize);
-    this.onResize();
-  },
-  created() {
-    this.workouts = [
-      {
-        id: 1,
-        activity: "Jog",
-        duration: 20,
-        week: 1,
-        completed: false,
-      },
-      {
-        id: 2,
-        activity: "Tennis",
-        duration: 50,
-        week: 1,
-        completed: false,
-      },
-      {
-        id: 3,
-        activity: "Power walk",
-        duration: 75,
-        week: 2,
-        completed: false,
-      },
-    ];
-  },
-};
+  ];
+});
 </script>
 
 <style scoped>
