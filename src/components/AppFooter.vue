@@ -8,12 +8,6 @@
   </footer>
 </template>
 
-<script>
-export default {
-  name: "AppFooter",
-};
-</script>
-
 <style scoped>
 footer {
   width: 100%;
