@@ -1,43 +1,44 @@
 <template>
   <div class="workout">
-    <div :class="[workout.completed ? 'completed' : '', 'workout-info']">
-      <p id="activity">{{ workout.activity }}</p>
-      <p id="duration">Duration: {{ workout.duration }} min</p>
-      <p id="week">Week: {{ workout.week }}</p>
+    <div :class="[props.workout.completed ? 'completed' : '', 'workout-info']">
+      <p id="activity">{{ props.workout.activity }}</p>
+      <p id="duration">Duration: {{ props.workout.duration }} min</p>
+      <p id="week">Week: {{ props.workout.week }}</p>
     </div>
     <div class="completeness-div">
       <AppButton
-        @button-clicked="$emit('complete-workout', workout.id)"
+        @button-clicked="CompleteWorkout(props.workout.id)"
         text="Completed"
-        v-show="!workout.completed"
+        v-show="!props.workout.completed"
       />
       <AppButton
-        @button-clicked="$emit('complete-workout', workout.id)"
+        @button-clicked="CompleteWorkout(props.workout.id)"
         text="Regret"
         color="gray"
-        v-show="workout.completed"
+        v-show="props.workout.completed"
       />
       <AppButton
-        @button-clicked="$emit('delete-workout', workout.id)"
+        @button-clicked="DeleteWorkout(props.workout.id)"
         text="Delete"
         color="red"
-        v-show="workout.completed"
+        v-show="props.workout.completed"
       />
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
 import AppButton from "./AppButton.vue";
-export default {
-  name: "WorkoutItem",
-  props: {
-    workout: Object,
-  },
-  components: {
-    AppButton,
-  },
-};
+const props = defineProps({ workout: Object });
+
+const emits = defineEmits(["complete-workout", "delete-workout"]);
+
+function CompleteWorkout(id) {
+  emits("complete-workout", id);
+}
+function DeleteWorkout(id) {
+  emits("delete-workout", id);
+}
 </script>
 
 <style scoped>
