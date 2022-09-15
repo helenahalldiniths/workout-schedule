@@ -6,8 +6,8 @@
         <label>Activity:</label>
         <input
           type="text"
-          v-model="activity"
-          name="activity"
+          v-model="newActivity"
+          name="newActivity"
           placeholder="Add Activity"
           required
         />
@@ -16,8 +16,8 @@
         <label>Duration:</label>
         <input
           type="number"
-          v-model="duration"
-          name="duration"
+          v-model="newDuration"
+          name="newDuration"
           placeholder="Add Duration (in minutes)"
           required
         />
@@ -26,8 +26,8 @@
         <label>Week:</label>
         <input
           type="number"
-          v-model="week"
-          name="week"
+          v-model="newWeek"
+          name="newWeek"
           placeholder="Add the week this workout should happen"
           required
         />
@@ -40,46 +40,45 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: "AddWorkout",
-  data() {
-    return {
-      activity: "",
-      duration: "",
-      week: "",
-      id: 4,
-    };
-  },
+<script setup>
+import { ref } from "vue";
+const newActivity = ref("");
+const newDuration = ref("");
+const newWeek = ref("");
+const newId = ref(4);
 
-  methods: {
-    onSubmit(event) {
-      event.preventDefault();
+function onSubmit(event) {
+  event.preventDefault();
 
-      if (this.duration <= 0) {
-        alert("Duration must be more than 0");
-        return;
-      } else if (this.week < 0) {
-        alert("The week must be at least 0");
-        return;
-      }
-      const newWorkout = {
-        id: this.id,
-        activity: this.activity,
-        duration: this.duration,
-        week: this.week,
-        completed: false,
-      };
+  if (newDuration.value <= 0) {
+    alert("Duration must be more than 0");
+    return;
+  } else if (newDuration.value < 0) {
+    alert("The week must be at least 0");
+    return;
+  }
+  const newWorkout = getNewWorkout();
+  emits("add-workout", newWorkout);
+  clearForm();
+}
 
-      this.$emit("add-workout", newWorkout);
+function getNewWorkout() {
+  return {
+    id: newId.value,
+    activity: newActivity.value,
+    duration: newDuration.value,
+    week: newWeek.value,
+    completed: false,
+  };
+}
+function clearForm() {
+  newId.value = newId.value + 1;
+  newActivity.value = "";
+  newDuration.value = "";
+  newWeek.value = "";
+}
 
-      this.id = this.id + 1;
-      this.activity = "";
-      this.duration = "";
-      this.week = "";
-    },
-  },
-};
+const emits = defineEmits(["add-workout"]);
 </script>
 
 <style scoped>
