@@ -5,12 +5,6 @@
   </nav>
 </template>
 
-<script>
-export default {
-  name: "NavBar",
-};
-</script>
-
 <style scoped>
 nav {
   background-color: rgb(254, 182, 34);
